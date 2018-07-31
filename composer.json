@@ -1,6 +1,6 @@
 {
-    "name": "toanld/sphinxql-query-builder",
-    "replace": {"toanld/sphinxql": "self.version"},
+    "name": "toanld/sphinx-query",
+    "replace": {"toanld/sphinx": "self.version"},
     "type": "library",
     "description": "A PHP query builder for SphinxQL. Uses MySQLi to connect to the Sphinx server.",
     "keywords": ["database", "sphinxql", "sphinx", "search", "SQL", "query builder"],
