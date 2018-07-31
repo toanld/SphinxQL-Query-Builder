@@ -643,7 +643,7 @@ class SphinxQL
                     );
                     $option['value'] = '('.implode(', ', $option['value']).')';
                 } else {
-                    $option['value'] = $this->getConnection()->quote($option['value']);
+                    $option['value'] = $option['value'];
                 }
 
                 $options[] = $option['name'].' = '.$option['value'];
