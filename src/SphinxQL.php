@@ -443,17 +443,18 @@ class SphinxQL
             foreach ($this->match as $match) {
                 $pre = '';
                 if ($match['column'] instanceof \Closure) {
-                    $sub = new Match($this);
+                    // ✅ thêm dấu "\" trước Match
+                    $sub = new \Foolz\SphinxQL\Match_($this);
                     call_user_func($match['column'], $sub);
                     $pre .= $sub->compile()->getCompiled();
-                } elseif ($match['column'] instanceof Match) {
+                } elseif ($match['column'] instanceof \Foolz\SphinxQL\Match_) {
                     $pre .= $match['column']->compile()->getCompiled();
                 } elseif (empty($match['column'])) {
                     $pre .= '';
                 } elseif (is_array($match['column'])) {
-                    $pre .= '@('.implode(',', $match['column']).') ';
+                    $pre .= '@(' . implode(',', $match['column']) . ') ';
                 } else {
-                    $pre .= '@'.$match['column'].' ';
+                    $pre .= '@' . $match['column'] . ' ';
                 }
 
                 if ($match['half']) {
@@ -463,16 +464,17 @@ class SphinxQL
                 }
 
                 if ($pre !== '') {
-                    $matched[] = '('.$pre.')';
+                    $matched[] = '(' . $pre . ')';
                 }
             }
 
             $matched = implode(' ', $matched);
-            $query .= $this->getConnection()->escape(trim($matched)).') ';
+            $query .= $this->getConnection()->escape(trim($matched)) . ') ';
         }
 
         return $query;
     }
+
 
     /**
      * Compiles the WHERE part of the queries
