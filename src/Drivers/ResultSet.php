@@ -87,6 +87,7 @@ class ResultSet implements ResultSetInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->hasRow($offset);
@@ -95,6 +96,7 @@ class ResultSet implements ResultSetInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->toRow($offset)->fetchAssoc();
@@ -104,6 +106,7 @@ class ResultSet implements ResultSetInterface
      * @inheritdoc
      * @codeCoverageIgnore
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         throw new \BadMethodCallException('Not implemented');
@@ -113,6 +116,7 @@ class ResultSet implements ResultSetInterface
      * @inheritdoc
      * @codeCoverageIgnore
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         throw new \BadMethodCallException('Not implemented');
@@ -121,6 +125,7 @@ class ResultSet implements ResultSetInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         $row = $this->fetched;
@@ -132,6 +137,7 @@ class ResultSet implements ResultSetInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->fetched = $this->fetch(true);
@@ -140,6 +146,7 @@ class ResultSet implements ResultSetInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return (int)$this->cursor;
@@ -148,6 +155,7 @@ class ResultSet implements ResultSetInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         if ($this->stored !== null) {
@@ -160,6 +168,7 @@ class ResultSet implements ResultSetInterface
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         if ($this->stored === null) {
@@ -175,6 +184,7 @@ class ResultSet implements ResultSetInterface
      * Returns the number of rows in the result set
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return $this->num_rows;
